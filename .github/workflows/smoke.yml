@@ -1,0 +1,22 @@
+name: BoxLite CI smoke
+
+on:
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  smoke:
+    name: Run on BoxLite
+    runs-on: boxlite-ci-runner
+    timeout-minutes: 3
+    steps:
+      - name: Check runner and execute a shell command
+        shell: bash
+        run: |
+          test "$RUNNER_ENVIRONMENT" = self-hosted
+          test "$RUNNER_OS" = Linux
+          printf 'Runner %s is running on %s (%s)\n' "$RUNNER_NAME" "$RUNNER_OS" "$RUNNER_ARCH"
+          # Leave a short window to see the ephemeral runner in the dashboard.
+          sleep 30
+          echo 'BoxLite CI smoke passed'
