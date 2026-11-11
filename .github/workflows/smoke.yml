@@ -8,7 +8,7 @@ permissions: {}
 jobs:
   smoke:
     name: Run on BoxLite
-    runs-on: boxlite-ci-runner
+    runs-on: boxlite
     timeout-minutes: 3
     steps:
       - name: Check runner and execute a shell command
